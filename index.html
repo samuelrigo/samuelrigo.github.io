@@ -358,8 +358,8 @@ details[open] .when-closed {
 </head>
 <body>
 <header class="grid">
-  <h1 class="name" data-intro>Samuel Rigo</h1>
-  <p class="statement" data-intro><span data-en="Full-stack software engineer. TypeScript, Node.js and React on multi-tenant SaaS.">Engenheiro de software full-stack. TypeScript, Node.js e React em SaaS multi-tenant.</span></p>
+  <h1 class="name">Samuel Rigo</h1>
+  <p class="statement"><span data-en="Full-stack software engineer. TypeScript, Node.js and React on multi-tenant SaaS.">Engenheiro de software full-stack. TypeScript, Node.js e React em SaaS multi-tenant.</span></p>
   <ul class="contacts">
     <li><a class="link" href="mailto:samuelrigo@gmail.com">samuelrigo@gmail.com</a></li>
     <li><a class="link" href="https://github.com/samuelrigo">GitHub</a></li>
@@ -549,7 +549,7 @@ details[open] .when-closed {
       <li class="entry">
         <div class="row grid">
           <strong class="title" data-en="Certification">Certificação</strong>
-          <span class="text-wide">Práticas de Cloud Services usando Swift com ênfase em IoT</span>
+          <span class="text-wide" data-en="Cloud Services Practices using Swift with a focus on IoT">Práticas de Cloud Services usando Swift com ênfase em IoT</span>
         </div>
       </li>
     </ol>
@@ -599,7 +599,7 @@ details[open] .when-closed {
     let tail = '';
 
     const frame = now => {
-      const progress = Math.min((now - startedAt) / duration, 1);
+      const progress = Math.min(Math.max((now - startedAt) / duration, 0), 1);
       const resolved = Math.floor(progress * text.length);
       const remaining = text.length - resolved;
 
@@ -670,12 +670,22 @@ details[open] .when-closed {
     }
   };
 
-  const introLeaves = () => [...document.querySelectorAll('[data-intro]')]
-    .flatMap(element => (element.children.length ? [...element.children] : [element]));
+  const visibleTextNodes = () => {
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    while (walker.nextNode()) {
+      const node = walker.currentNode;
+      const parent = node.parentElement;
+      if (node.textContent.trim() && !parent.closest('script, time') && isRendered(parent)) {
+        nodes.push(node);
+      }
+    }
+    return nodes;
+  };
 
   const playIntro = () => {
-    for (const leaf of introLeaves()) {
-      reveal(leaf, leaf.textContent, true);
+    for (const node of visibleTextNodes()) {
+      scramble(node, node.textContent);
     }
   };
 
