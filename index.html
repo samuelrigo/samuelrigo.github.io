@@ -23,7 +23,7 @@
   --paper: #eef0f0;
   --rest: color-mix(in srgb, var(--ink) 30%, var(--paper));
   --line: 1.3rem;
-  --hover-delay: 1s;
+  --hover-delay: 0.15s;
   --hover-fade: 0.5s;
   --cols: 12;
   --gutter: 0.8rem;
@@ -354,15 +354,6 @@ details[open] .when-closed {
     grid-column: 1 / -1;
   }
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .link,
-  .contacts .link,
-  .action-label,
-  .entry {
-    transition: none;
-  }
-}
 </style>
 </head>
 <body>
@@ -570,7 +561,6 @@ details[open] .when-closed {
   'use strict';
 
   const root = document.documentElement;
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const description = document.querySelector('meta[name="description"]');
   const pageTitle = document.querySelector('title');
   const languageSwitch = document.getElementById('language');
@@ -633,7 +623,7 @@ details[open] .when-closed {
   };
 
   const reveal = (element, text, animated) => {
-    if (animated && !reducedMotion.matches && isRendered(element)) {
+    if (animated && isRendered(element)) {
       scramble(element, text);
     } else {
       settle(element, text);
