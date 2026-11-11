@@ -1,0 +1,716 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-en="Samuel Rigo, full-stack software engineer">Samuel Rigo, engenheiro de software full-stack</title>
+<meta name="description" content="Engenheiro de software full-stack em Maringá/PR. TypeScript, Node.js e React em SaaS multi-tenant." data-en="Full-stack software engineer in Maringá, Brazil. TypeScript, Node.js and React on multi-tenant SaaS.">
+<link rel="canonical" href="https://samuelrigo.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://samuelrigo.github.io/">
+<meta property="og:title" content="Samuel Rigo, engenheiro de software full-stack">
+<meta property="og:description" content="TypeScript, Node.js e React em SaaS multi-tenant. Projetos, experiência e contato.">
+<meta name="theme-color" content="#eef0f0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b0d0e" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230b0d0e'/%3E%3Ctext x='16' y='21.5' text-anchor='middle' font-family='Arial,sans-serif' font-size='14' font-weight='700' fill='%23eef0f0'%3ESR%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martian+Mono:wdth,wght@75..112.5,100..800&display=swap">
+<style>
+:root {
+  color-scheme: light dark;
+  --ink: #0b0d0e;
+  --paper: #eef0f0;
+  --rest: color-mix(in srgb, var(--ink) 30%, var(--paper));
+  --line: 1.3rem;
+  --hover-delay: 1s;
+  --hover-fade: 0.5s;
+  --cols: 12;
+  --gutter: 0.8rem;
+  --margin: 1.6rem;
+  --ease: cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #eef0f0;
+    --paper: #0b0d0e;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: clamp(0.625rem, 0.27rem + 0.47vw, 0.8125rem);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  padding: var(--margin);
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Martian Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-size: 1rem;
+  font-weight: 350;
+  font-stretch: 80%;
+  font-synthesis: none;
+  line-height: var(--line);
+  letter-spacing: 0;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+p,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+  font-weight: inherit;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+strong {
+  font-weight: 600;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+:focus-visible {
+  outline: 1px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  column-gap: var(--gutter);
+  align-items: baseline;
+}
+
+.link,
+.action-label {
+  color: inherit;
+  text-decoration: none;
+  background: linear-gradient(currentColor, currentColor) no-repeat 0 100% / 0 1px;
+  transition: background-size 0.5s var(--ease);
+}
+
+.link:hover,
+.row:hover .action-label {
+  background-size: 100% 1px;
+}
+
+.name {
+  grid-column: 1 / 3;
+  font-weight: 600;
+}
+
+.statement {
+  grid-column: 3 / 8;
+  text-wrap: balance;
+}
+
+.contacts {
+  grid-column: 9 / 11;
+  overflow-wrap: anywhere;
+}
+
+.locale {
+  grid-column: 11 / 13;
+}
+
+.language {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+}
+
+.language-option {
+  appearance: none;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+}
+
+.language-option[aria-pressed="true"] {
+  font-weight: 600;
+}
+
+.catalogue {
+  margin-top: auto;
+  padding-top: 6rem;
+}
+
+.index + .index {
+  margin-top: 2.4rem;
+}
+
+.heading {
+  margin-bottom: 0.55rem;
+}
+
+.row {
+  padding: 0.26rem 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.when {
+  grid-column: 1 / 3;
+  white-space: nowrap;
+}
+
+.title {
+  grid-column: 3 / 5;
+}
+
+.text {
+  grid-column: 5 / 9;
+  text-wrap: pretty;
+}
+
+.text-wide {
+  grid-column: 5 / 11;
+}
+
+.tags {
+  grid-column: 9 / 11;
+}
+
+.action {
+  grid-column: 11 / 13;
+}
+
+.expandable {
+  cursor: pointer;
+  list-style: none;
+}
+
+.expandable::-webkit-details-marker {
+  display: none;
+}
+
+.when-open {
+  display: none;
+}
+
+details[open] .when-open {
+  display: inline;
+}
+
+details[open] .when-closed {
+  display: none;
+}
+
+.panel {
+  padding: 0.7rem 0 1.8rem;
+}
+
+.detail {
+  grid-column: 5 / 11;
+  display: grid;
+  row-gap: 0.5rem;
+}
+
+.duties {
+  display: grid;
+  row-gap: 0.5rem;
+}
+
+@media (hover: hover) {
+  .entry {
+    transition: color var(--hover-fade) ease var(--hover-delay);
+  }
+
+  .contacts .link {
+    transition: color var(--hover-fade) ease var(--hover-delay), background-size 0.5s var(--ease);
+  }
+
+  .rows:has(.entry:hover) .entry:not(:hover),
+  .contacts:has(.link:hover) .link:not(:hover) {
+    color: var(--rest);
+  }
+}
+
+@media (max-width: 860px) {
+  :root {
+    --cols: 6;
+    --margin: 16px;
+  }
+
+  html {
+    font-size: 0.75rem;
+  }
+
+  .name,
+  .statement {
+    grid-column: 1 / -1;
+  }
+
+  .statement {
+    margin-top: 0.8rem;
+  }
+
+  .contacts {
+    grid-column: 1 / 4;
+    margin-top: 2rem;
+    line-height: 2;
+  }
+
+  .locale {
+    grid-column: 4 / -1;
+    margin-top: 2rem;
+    line-height: 2;
+  }
+
+  .catalogue {
+    padding-top: 4rem;
+  }
+
+  .row {
+    padding: 0.6rem 0;
+    row-gap: 0.3rem;
+  }
+
+  .when {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .title {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .text,
+  .text-wide {
+    grid-column: 1 / -1;
+    grid-row: 3;
+  }
+
+  .tags {
+    grid-column: 1 / 5;
+    grid-row: 4;
+  }
+
+  .action {
+    grid-column: 5 / -1;
+    grid-row: 4;
+    justify-self: end;
+    white-space: nowrap;
+  }
+
+  .detail {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link,
+  .contacts .link,
+  .action-label,
+  .entry {
+    transition: none;
+  }
+}
+</style>
+</head>
+<body>
+<header class="grid">
+  <h1 class="name" data-intro>Samuel Rigo</h1>
+  <p class="statement" data-intro><span data-en="Full-stack software engineer. TypeScript, Node.js and React on multi-tenant SaaS.">Engenheiro de software full-stack. TypeScript, Node.js e React em SaaS multi-tenant.</span></p>
+  <ul class="contacts">
+    <li><a class="link" href="mailto:samuelrigo@gmail.com">samuelrigo@gmail.com</a></li>
+    <li><a class="link" href="https://github.com/samuelrigo">GitHub</a></li>
+    <li><a class="link" href="https://www.linkedin.com/in/samuel-rigo-dev/">LinkedIn</a></li>
+  </ul>
+  <div class="locale">
+    <p>Maringá/PR</p>
+    <p id="local-time" hidden><time id="clock"></time> BRT</p>
+    <div class="language" id="language" role="group" aria-label="Idioma / Language" hidden>
+      <button class="language-option" type="button" data-language="pt" lang="pt-BR" aria-pressed="true">PT</button>
+      <span aria-hidden="true">/</span>
+      <button class="language-option" type="button" data-language="en" lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</header>
+
+<main class="catalogue">
+  <section class="index" aria-labelledby="projects-heading">
+    <h2 class="heading" id="projects-heading"><span data-en="Projects">Projetos</span> <span data-count="projects">(4)</span></h2>
+    <ol class="rows" id="projects">
+      <li class="entry">
+        <a class="row grid" href="https://github.com/samuelrigo/artia">
+          <span class="when">2026 <span>nov</span></span>
+          <strong class="title">Artia</strong>
+          <span class="text"><span data-en="Claude Code skills for Artia, a project management tool: read and edit tasks, log hours from git log, draft an implementation plan.">Skills do Claude Code para o Artia, ferramenta de gestão de projetos: consultar e editar tarefas, apontar horas a partir do git log, montar plano de implementação.</span></span>
+          <span class="tags">Python</span>
+          <span class="action"><span class="action-label">GitHub</span></span>
+        </a>
+      </li>
+      <li class="entry">
+        <a class="row grid" href="https://ensinadev.com.br">
+          <span class="when">2026 <span>nov</span></span>
+          <strong class="title">Ensina Dev</strong>
+          <span class="text"><span data-en="Free platform for learning to program. My contributions: favourite practice exams, dark mode and KaTeX rendering fixes.">Plataforma gratuita de estudos de programação. Minhas contribuições: favoritar simulados, correções de dark mode e de renderização KaTeX.</span> <span data-en="A project by João Pedro Veras.">Projeto de João Pedro Veras.</span></span>
+          <span class="tags">TypeScript, React</span>
+          <span class="action"><span class="action-label">ensinadev.com.br</span></span>
+        </a>
+      </li>
+      <li class="entry">
+        <a class="row grid" href="https://github.com/samuelrigo/express-api">
+          <span class="when">2026 <span data-en="oct">out</span></span>
+          <strong class="title">Tarefas API</strong>
+          <span class="text"><span data-en="REST API for tasks and comments: Zod validation, API key, rate limiting, Jest tests. A study project.">API REST de tarefas e comentários: validação com Zod, chave de API, rate limit, testes com Jest. Projeto de estudo.</span></span>
+          <span class="tags">Node.js, Express</span>
+          <span class="action"><span class="action-label">GitHub</span></span>
+        </a>
+      </li>
+      <li class="entry">
+        <a class="row grid" href="https://github.com/samuelrigo/artia-apontar">
+          <span class="when">2026 <span>jul</span></span>
+          <strong class="title">Artia Apontar</strong>
+          <span class="text"><span data-en="First version: logs hours in Artia from commits. Now part of Artia.">Primeira versão: aponta horas no Artia a partir dos commits. Hoje faz parte do Artia.</span></span>
+          <span class="tags">Python</span>
+          <span class="action"><span class="action-label">GitHub</span></span>
+        </a>
+      </li>
+    </ol>
+  </section>
+
+  <section class="index" aria-labelledby="experience-heading">
+    <h2 class="heading" id="experience-heading"><span data-en="Experience">Experiência</span> <span data-count="experience">(5)</span></h2>
+    <ol class="rows" id="experience">
+      <li class="entry">
+        <details>
+          <summary class="row grid expandable">
+            <span class="when">2026 <span data-en="apr">abr</span> – <span data-en="present">hoje</span></span>
+            <strong class="title">Senior Norte do Paraná</strong>
+            <span class="text" data-en="Software engineer">Engenheiro de software</span>
+            <span class="tags">TypeScript, Node.js, React</span>
+            <span class="action"><span class="action-label when-closed" data-en="Details">Detalhes</span><span class="action-label when-open" data-en="Close">Fechar</span></span>
+          </summary>
+          <div class="grid panel">
+            <div class="detail">
+              <p><span data-en="Full-stack development of four multi-tenant SaaS products, integrated with Senior's ERP and HCM.">Desenvolvimento full-stack de quatro produtos SaaS multi-tenant, integrados ao ERP e ao HCM da Senior.</span></p>
+              <ul class="duties">
+                <li><span data-en="REST APIs in Node.js, TypeScript and Express, documented with OpenAPI/Swagger.">APIs REST em Node.js, TypeScript e Express, documentadas em OpenAPI/Swagger.</span></li>
+                <li><span data-en="Web applications in React and a field mobile app in React Native/Expo.">Aplicações web em React e app mobile de campo em React Native/Expo.</span></li>
+                <li><span data-en="Modelling and evolving the multi-tenant PostgreSQL schema (one schema per tenant), with migrations compatible with tenants in production.">Modelagem e evolução do schema PostgreSQL multi-tenant (schema por tenant), com migrations compatíveis com tenants em produção.</span></li>
+                <li><span data-en="CI/CD pipelines with automated Jest tests and multi-tenant migration validation as required steps before deploy.">Pipelines de CI/CD com testes automatizados em Jest e validação de migrations multi-tenant como etapas obrigatórias antes do deploy.</span></li>
+                <li><span data-en="Performance work: server-side pagination, required filters, lazy loading and single-transaction writes.">Otimização de performance: paginação no servidor, filtros obrigatórios, lazy loading e escritas em transação única.</span></li>
+                <li><span data-en="First to adopt AI tools (Cursor, Claude Code, MCP) in the software factory, with documentation for company-wide use.">Pioneiro na adoção de ferramentas de IA (Cursor, Claude Code, MCP) na fábrica de software, com documentação para uso em toda a empresa.</span></li>
+              </ul>
+            </div>
+          </div>
+        </details>
+      </li>
+      <li class="entry">
+        <details>
+          <summary class="row grid expandable">
+            <span class="when">2025 <span data-en="oct">out</span> – 2026 <span>mar</span></span>
+            <strong class="title">Ten Coffee</strong>
+            <span class="text" data-en="Junior software engineer">Engenheiro de software júnior</span>
+            <span class="tags">React, Spring Boot</span>
+            <span class="action"><span class="action-label when-closed" data-en="Details">Detalhes</span><span class="action-label when-open" data-en="Close">Fechar</span></span>
+          </summary>
+          <div class="grid panel">
+            <div class="detail">
+              <ul class="duties">
+                <li><span data-en="Built 100% of the system's screens in React.js (20+ interfaces).">Desenvolvimento de 100% das telas do sistema em React.js (mais de 20 interfaces).</span></li>
+                <li><span data-en="Backend features and integration with 15+ REST endpoints in Java (Spring Boot).">Funcionalidades de backend e integração com mais de 15 endpoints REST em Java (Spring Boot).</span></li>
+                <li><span data-en="Performance improvements of 20–30% on application routes.">Melhorias de performance com ganhos de 20–30% em rotas da aplicação.</span></li>
+                <li data-en="React.js, Java (Spring Boot), PostgreSQL and Docker.">React.js, Java (Spring Boot), PostgreSQL e Docker.</li>
+              </ul>
+            </div>
+          </div>
+        </details>
+      </li>
+      <li class="entry">
+        <details>
+          <summary class="row grid expandable">
+            <span class="when">2024 <span data-en="may">mai</span> – 2025 <span data-en="sep">set</span></span>
+            <strong class="title">DB1 Group</strong>
+            <span class="text" data-en="Implementation analyst, customer success">Analista de implantação, customer success</span>
+            <span class="tags">SQL, Azure DevOps</span>
+            <span class="action"><span class="action-label when-closed" data-en="Details">Detalhes</span><span class="action-label when-open" data-en="Close">Fechar</span></span>
+          </summary>
+          <div class="grid panel">
+            <div class="detail">
+              <ul class="duties">
+                <li><span data-en="Managed a portfolio of 100+ clients, focused on retention and relationship.">Gestão de carteira com mais de 100 clientes, com foco em retenção e relacionamento.</span></li>
+                <li><span data-en="Ran onboarding for clients and staff, making sure the platform was adopted.">Condução de onboarding de clientes e colaboradores, garantindo a adoção da plataforma.</span></li>
+                <li><span data-en="SQL queries and data analysis, and technical demand management in Azure DevOps.">Consultas e análises de dados em SQL e gestão de demandas técnicas no Azure DevOps.</span></li>
+                <li><span data-en="AI solutions to automate processes and cut rework.">Soluções com IA para automatizar processos, reduzindo retrabalho.</span></li>
+              </ul>
+            </div>
+          </div>
+        </details>
+      </li>
+      <li class="entry">
+        <details>
+          <summary class="row grid expandable">
+            <span class="when">2022 <span data-en="oct">out</span> – 2024 <span data-en="apr">abr</span></span>
+            <strong class="title">Flugo</strong>
+            <span class="text" data-en="Technical support">Suporte técnico</span>
+            <span class="tags">Scrum</span>
+            <span class="action"><span class="action-label when-closed" data-en="Details">Detalhes</span><span class="action-label when-open" data-en="Close">Fechar</span></span>
+          </summary>
+          <div class="grid panel">
+            <div class="detail">
+              <ul class="duties">
+                <li><span data-en="Technical support for internal systems and clients.">Suporte técnico a sistemas internos e clientes, com resolução de problemas técnicos.</span></li>
+                <li><span data-en="Weekly sprint management with Scrum (Trello and Bitrix24).">Gestão de sprints semanais com Scrum (Trello e Bitrix24).</span></li>
+              </ul>
+            </div>
+          </div>
+        </details>
+      </li>
+      <li class="entry">
+        <details>
+          <summary class="row grid expandable">
+            <span class="when">2021 <span data-en="sep">set</span> – 2022 <span data-en="sep">set</span></span>
+            <strong class="title">R. Guirado</strong>
+            <span class="text" data-en="Process engineering intern">Estagiário em engenharia de processos</span>
+            <span class="tags">BPMN</span>
+            <span class="action"><span class="action-label when-closed" data-en="Details">Detalhes</span><span class="action-label when-open" data-en="Close">Fechar</span></span>
+          </summary>
+          <div class="grid panel">
+            <div class="detail">
+              <ul class="duties">
+                <li><span data-en="Process mapping with BPMN and requirements gathering with clients.">Mapeamento de processos com BPMN e levantamento de requisitos junto a clientes.</span></li>
+                <li><span data-en="Process optimisation proposals and support for running a franchise platform.">Propostas de otimização de processos e apoio à operação de plataforma de franquias.</span></li>
+              </ul>
+            </div>
+          </div>
+        </details>
+      </li>
+    </ol>
+  </section>
+
+  <section class="index" aria-labelledby="education-heading">
+    <h2 class="heading" id="education-heading"><span data-en="Education and recognition">Formação e reconhecimento</span> <span data-count="education">(3)</span></h2>
+    <ol class="rows" id="education">
+      <li class="entry">
+        <div class="row grid">
+          <span class="when">2021 – 2025</span>
+          <strong class="title">UniCesumar</strong>
+          <span class="text" data-en="BSc in Software Engineering">Graduação em Engenharia de Software</span>
+        </div>
+      </li>
+      <li class="entry">
+        <div class="row grid">
+          <span class="when">2023</span>
+          <strong class="title">NASA Space Apps Challenge</strong>
+          <span class="text" data-en="2nd place">2º lugar</span>
+        </div>
+      </li>
+      <li class="entry">
+        <div class="row grid">
+          <strong class="title" data-en="Certification">Certificação</strong>
+          <span class="text-wide">Práticas de Cloud Services usando Swift com ênfase em IoT</span>
+        </div>
+      </li>
+    </ol>
+  </section>
+</main>
+
+<script>
+(() => {
+  'use strict';
+
+  const root = document.documentElement;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const description = document.querySelector('meta[name="description"]');
+  const pageTitle = document.querySelector('title');
+  const languageSwitch = document.getElementById('language');
+  const languageOptions = [...languageSwitch.querySelectorAll('[data-language]')];
+  const translatable = [...document.body.querySelectorAll('[data-en]')];
+  const portuguese = new Map(translatable.map(element => [element, element.textContent]));
+  const portugueseTitle = pageTitle.textContent;
+  const portugueseDescription = description.content;
+  const storageKey = 'idioma';
+  const lowercase = 'abcdefghijklmnopqrstuvwxyz';
+  const uppercase = lowercase.toUpperCase();
+  const digits = '0123456789';
+  const runningScrambles = new WeakMap();
+
+  const pick = pool => pool[Math.floor(Math.random() * pool.length)];
+
+  const disguise = character => {
+    if (/\d/.test(character)) return pick(digits);
+    if (/\p{Lu}/u.test(character)) return pick(uppercase);
+    if (/\p{Ll}/u.test(character)) return pick(lowercase);
+    return character;
+  };
+
+  const isRendered = element => element.getClientRects().length > 0;
+
+  const settle = (element, text) => {
+    cancelAnimationFrame(runningScrambles.get(element));
+    element.textContent = text;
+  };
+
+  const scramble = (element, text) => {
+    cancelAnimationFrame(runningScrambles.get(element));
+    const duration = 420 + Math.min(text.length, 140) * 4;
+    const startedAt = performance.now();
+    let shuffledAt = -Infinity;
+    let tail = '';
+
+    const frame = now => {
+      const progress = Math.min((now - startedAt) / duration, 1);
+      const resolved = Math.floor(progress * text.length);
+      const remaining = text.length - resolved;
+
+      if (now - shuffledAt > 45) {
+        tail = [...text.slice(resolved)].map(disguise).join('');
+        shuffledAt = now;
+      } else {
+        tail = tail.slice(tail.length - remaining);
+      }
+
+      element.textContent = text.slice(0, resolved) + tail;
+
+      if (progress < 1) {
+        runningScrambles.set(element, requestAnimationFrame(frame));
+      } else {
+        element.textContent = text;
+      }
+    };
+
+    runningScrambles.set(element, requestAnimationFrame(frame));
+  };
+
+  const reveal = (element, text, animated) => {
+    if (animated && !reducedMotion.matches && isRendered(element)) {
+      scramble(element, text);
+    } else {
+      settle(element, text);
+    }
+  };
+
+  const readSavedLanguage = () => {
+    try {
+      return localStorage.getItem(storageKey);
+    } catch {
+      return null;
+    }
+  };
+
+  const saveLanguage = language => {
+    try {
+      localStorage.setItem(storageKey, language);
+    } catch {
+      return;
+    }
+  };
+
+  const supportedLanguage = value => (value === 'pt' || value === 'en' ? value : null);
+
+  const initialLanguage = () => {
+    const requested = supportedLanguage(new URLSearchParams(location.search).get('lang'));
+    const saved = supportedLanguage(readSavedLanguage());
+    const browser = navigator.language.toLowerCase().startsWith('pt') ? 'pt' : 'en';
+    return requested ?? saved ?? browser;
+  };
+
+  const applyLanguage = (language, animated) => {
+    const english = language === 'en';
+    root.lang = english ? 'en' : 'pt-BR';
+    pageTitle.textContent = english ? pageTitle.dataset.en : portugueseTitle;
+    description.content = english ? description.dataset.en : portugueseDescription;
+
+    for (const element of translatable) {
+      reveal(element, english ? element.dataset.en : portuguese.get(element), animated);
+    }
+
+    for (const option of languageOptions) {
+      option.setAttribute('aria-pressed', String(option.dataset.language === language));
+    }
+  };
+
+  const introLeaves = () => [...document.querySelectorAll('[data-intro]')]
+    .flatMap(element => (element.children.length ? [...element.children] : [element]));
+
+  const playIntro = () => {
+    for (const leaf of introLeaves()) {
+      reveal(leaf, leaf.textContent, true);
+    }
+  };
+
+  const fillCounts = () => {
+    for (const counter of document.querySelectorAll('[data-count]')) {
+      const list = document.getElementById(counter.dataset.count);
+      counter.textContent = `(${list.children.length})`;
+    }
+  };
+
+  const startClock = () => {
+    const clock = document.getElementById('clock');
+    const brasiliaTime = new Intl.DateTimeFormat('pt-BR', {
+      timeZone: 'America/Sao_Paulo',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false
+    });
+
+    const tick = () => {
+      const now = new Date();
+      clock.textContent = brasiliaTime.format(now);
+      clock.dateTime = now.toISOString();
+      setTimeout(tick, 1000 - (now.getTime() % 1000));
+    };
+
+    tick();
+    document.getElementById('local-time').hidden = false;
+  };
+
+  for (const option of languageOptions) {
+    option.addEventListener('click', () => {
+      const language = option.dataset.language;
+      if (option.getAttribute('aria-pressed') === 'true') return;
+      saveLanguage(language);
+      applyLanguage(language, true);
+    });
+  }
+
+  fillCounts();
+  startClock();
+  languageSwitch.hidden = false;
+  applyLanguage(initialLanguage(), false);
+  playIntro();
+})();
+</script>
+</body>
+</html>
