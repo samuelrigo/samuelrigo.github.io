@@ -23,7 +23,7 @@
   --paper: #eef0f0;
   --rest: color-mix(in srgb, var(--ink) 30%, var(--paper));
   --line: 1.3rem;
-  --hover-delay: 0.15s;
+  --hover-delay: 0.08s;
   --hover-fade: 0.5s;
   --cols: 12;
   --gutter: 0.8rem;
@@ -593,7 +593,7 @@ details[open] .when-closed {
 
   const scramble = (element, text) => {
     cancelAnimationFrame(runningScrambles.get(element));
-    const duration = 420 + Math.min(text.length, 140) * 4;
+    const duration = 320 + Math.min(text.length, 140) * 3;
     const startedAt = performance.now();
     let shuffledAt = -Infinity;
     let tail = '';
