@@ -237,27 +237,48 @@ details[open] .when-closed {
 
 .detail {
   grid-column: 5 / 11;
+  max-width: 84ch;
   display: grid;
-  row-gap: 0.5rem;
+  row-gap: 1.3rem;
+  line-height: 1.55rem;
 }
 
 .duties {
   display: grid;
-  row-gap: 0.5rem;
+  row-gap: 1rem;
+}
+
+.duties > li {
+  position: relative;
+  padding-left: 1.8rem;
+}
+
+.duties > li::before {
+  content: "\2013";
+  position: absolute;
+  left: 0;
+}
+
+.entry {
+  transition: color var(--hover-fade) ease var(--hover-delay);
+}
+
+.rows:has(details[open]) .entry:not(:has(details[open])) {
+  color: var(--rest);
 }
 
 @media (hover: hover) {
-  .entry {
-    transition: color var(--hover-fade) ease var(--hover-delay);
-  }
-
   .contacts .link {
     transition: color var(--hover-fade) ease var(--hover-delay), background-size 0.5s var(--ease);
   }
 
-  .rows:has(.entry:hover) .entry:not(:hover),
+  .rows:has(.entry:hover) .entry:not(:hover):not(:has(details[open])),
   .contacts:has(.link:hover) .link:not(:hover) {
     color: var(--rest);
+  }
+
+  .rows:has(details[open]) .entry:not(:has(details[open])):hover {
+    color: var(--ink);
   }
 }
 
